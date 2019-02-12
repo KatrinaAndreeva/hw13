@@ -24,3 +24,20 @@ promiseCreator.then(result => console.log(result));
 // inst.resolve('test'); 
 // →  test
 
+class Prom {
+    constructor() {
+        this.promise = new Promise((resolve, reject) => {
+            this.resolve = resolve;
+            this.reject = reject;
+        });
+    }
+    resolve(value) {
+        this.res(value);
+    }
+    reject(reason) {
+        this.rej(reason);
+    }
+}
+const inst = new Prom();
+inst.promise.then((data) => console.log(data));
+inst.resolve('test');
