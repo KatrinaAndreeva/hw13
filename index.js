@@ -6,11 +6,17 @@
 // prom.then(console.log);
 // // Ok!
 
-let promiseCreator = new Promise((resolve, reject) => {
-    setTimeout(() => resolve('Ok!'), 500);
-    setTimeout(() => reject('error'), 500);
-});
-promiseCreator.then(result => console.log(result));
+
+let CreatePromise = function(text, time) {
+     this.time = time;
+     this.text = text;
+     let promiseCreator = new Promise((resolve, reject) => {
+         setTimeout(() => resolve(this.text), this.time);
+         setTimeout(() => reject('error'), 500);
+     });
+     return (promiseCreator.then(result => console.log(result)));
+};
+const createPromise = CreatePromise('some text', 100);
 
 
 // 2. Создать класс, который производит экземпляр со следующими свойствами:
@@ -30,12 +36,6 @@ class Prom {
             this.resolve = resolve;
             this.reject = reject;
         });
-    }
-    resolve(value) {
-        this.res(value);
-    }
-    reject(reason) {
-        this.rej(reason);
     }
 }
 const inst = new Prom();
