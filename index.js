@@ -7,17 +7,27 @@
 // // Ok!
 
 
-let CreatePromise = function(text, time) {
-     this.time = time;
-     this.text = text;
-     let promiseCreator = new Promise((resolve, reject) => {
-         setTimeout(() => resolve(this.text), this.time);
-         setTimeout(() => reject('error'), 500);
-     });
-     return (promiseCreator.then(result => console.log(result)));
-};
-const createPromise = CreatePromise('some text', 100);
+// let CreatePromise = function(text, time) {
+//      this.time = time;
+//      this.text = text;
+//      let promiseCreator = new Promise((resolve, reject) => {
+//          setTimeout(() => resolve(this.text), this.time);
+//          setTimeout(() => reject('error'), 500);
+//      });
+//      return (promiseCreator.then(result => console.log(result)));
+// };
+// const createPromise = CreatePromise('some text', 100);
+// createPromise.then((value) => console.log('must be done', value));
 
+function promiseCreator(time, value) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(value);
+        }, time);
+    });
+}
+ const prom = promiseCreator(100, 'some new text');
+ prom.then(console.log);
 
 // 2. Создать класс, который производит экземпляр со следующими свойствами:
 // - promise - промис, который создается во время запуска конструктора;
